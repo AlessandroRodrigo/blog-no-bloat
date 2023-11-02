@@ -24,10 +24,10 @@ const { page } = Astro.props;
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="flex min-h-screen flex-col">
     <Header />
-    <main class="bg-background flex-1 py-12">
-      <section class="flex flex-col items-center max-w-5xl mx-auto">
+    <main class="flex-1 bg-background py-12">
+      <section class="mx-auto flex max-w-5xl flex-col items-center">
         <ul class="grid grid-cols-2 gap-8">
           {
             page.data.map((post) => (
@@ -39,7 +39,7 @@ const { page } = Astro.props;
                     src={post.data.heroImage}
                     alt=""
                   />
-                  <h4 class="text-xl group-hover:text-primary transition-colors mt-2">
+                  <h4 class="mt-2 text-xl transition-colors group-hover:text-primary">
                     {post.data.title}
                   </h4>
                   <p class="text-sm opacity-70">
@@ -51,13 +51,13 @@ const { page } = Astro.props;
             ))
           }
         </ul>
-        <div class="flex justify-end gap-4 mt-10">
+        <div class="mt-10 flex justify-end gap-4">
           <Button
             variant="primary"
             disabled={!page.url.prev}
             class:list={{
               "min-w-[100px]": true,
-              "opacity-50 cursor-not-allowed pointer-events-none":
+              "pointer-events-none cursor-not-allowed opacity-50":
                 !page.url.prev,
             }}
           >
@@ -68,7 +68,7 @@ const { page } = Astro.props;
             disabled={!page.url.next}
             class:list={{
               "min-w-[100px]": true,
-              "opacity-50 cursor-not-allowed pointer-events-none":
+              "pointer-events-none cursor-not-allowed opacity-50":
                 !page.url.next,
             }}
           >
