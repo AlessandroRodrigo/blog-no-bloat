@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types";
+export interface Props extends HTMLAttributes<"button"> {
+  variant: "primary" | "secondary" | "outlined" | "text";
+}
+
+const { class: className, variant, ...rest } = Astro.props;
+---
+
+<button
+  class:list={{
+    [`px-4 py-2 rounded-sm hover:bg-opacity-80 transition-colors duration-200 ease-in-out ${className} select-none`]: true,
+    "bg-primary text-white": variant === "primary",
+    "bg-secondary text-white": variant === "secondary",
+    "bg-transparent text-primary border border-primary hover:bg-accent hover:bg-opacity-10":
+      variant === "outlined",
+    "bg-transparent text-primary hover:bg-accent hover:bg-opacity-10":
+      variant === "text",
+  }}
+  {...rest}
+>
+  <slot />
+</button>

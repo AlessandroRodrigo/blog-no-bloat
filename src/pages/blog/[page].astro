@@ -5,11 +5,12 @@ import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
 import Header from "../../components/Header.astro";
+import Button from "../../components/ui/Button.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = (await getCollection("blog")).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
   );
 
   return paginate(posts, { pageSize: 5 });
@@ -51,24 +52,28 @@ const { page } = Astro.props;
           }
         </ul>
         <div class="flex justify-end gap-4 mt-10">
-          <button
+          <Button
+            variant="primary"
             disabled={!page.url.prev}
             class:list={{
+              "min-w-[100px]": true,
               "opacity-50 cursor-not-allowed pointer-events-none":
                 !page.url.prev,
             }}
           >
             <a href={`/blog-no-bloat${page.url.prev}`}>Previous</a>
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="primary"
             disabled={!page.url.next}
             class:list={{
+              "min-w-[100px]": true,
               "opacity-50 cursor-not-allowed pointer-events-none":
                 !page.url.next,
             }}
           >
             <a href={`/blog-no-bloat${page.url.next}`}> Next</a>
-          </button>
+          </Button>
         </div>
       </section>
     </main>
