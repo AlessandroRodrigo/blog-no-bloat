@@ -6,5 +6,6 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://AlessandroRodrigo.github.io",
+  base: "/blog-no-bloat",
   integrations: [mdx(), sitemap()],
 });
