@@ -23,14 +23,14 @@ const { page } = Astro.props;
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body>
+  <body class="min-h-screen flex flex-col">
     <Header />
-    <main>
-      <section>
-        <ul>
+    <main class="bg-background flex-1 py-12">
+      <section class="flex flex-col items-center max-w-5xl mx-auto">
+        <ul class="grid grid-cols-2 gap-8">
           {
             page.data.map((post) => (
-              <li>
+              <li class="group">
                 <a href={`/blog-no-bloat/blog/${post.slug}/`}>
                   <img
                     width={720}
@@ -38,29 +38,39 @@ const { page } = Astro.props;
                     src={post.data.heroImage}
                     alt=""
                   />
-                  <h4 class="title">{post.data.title}</h4>
-                  <p class="date">
+                  <h4 class="text-xl group-hover:text-primary transition-colors mt-2">
+                    {post.data.title}
+                  </h4>
+                  <p class="text-sm opacity-70">
                     <FormattedDate date={post.data.pubDate} />
                   </p>
+                  <p>{post.data.description}</p>
                 </a>
               </li>
             ))
           }
         </ul>
-      </section>
-
-      <div class="flex items-center justify-end gap-4 mt-10">
-        {
-          page.url.prev ? (
+        <div class="flex justify-end gap-4 mt-10">
+          <button
+            disabled={!page.url.prev}
+            class:list={{
+              "opacity-50 cursor-not-allowed pointer-events-none":
+                !page.url.prev,
+            }}
+          >
             <a href={`/blog-no-bloat${page.url.prev}`}>Previous</a>
-          ) : null
-        }
-        {
-          page.url.next ? (
-            <a href={`/blog-no-bloat${page.url.next}`}>Next</a>
-          ) : null
-        }
-      </div>
+          </button>
+          <button
+            disabled={!page.url.next}
+            class:list={{
+              "opacity-50 cursor-not-allowed pointer-events-none":
+                !page.url.next,
+            }}
+          >
+            <a href={`/blog-no-bloat${page.url.next}`}> Next</a>
+          </button>
+        </div>
+      </section>
     </main>
     <Footer />
   </body>
