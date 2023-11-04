@@ -1,7 +1,7 @@
 ---
-title: "Markdown Style Guide"
+title: "Thanks Javascript lifestyle"
 description: "Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro."
-pubDate: "Jul 01 2022"
+pubDate: "Nov 04 2023"
 heroImage: "/blog-no-bloat/blog-placeholder-1.jpg"
 ---
 
