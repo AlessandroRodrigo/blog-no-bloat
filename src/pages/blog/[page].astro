@@ -34,6 +34,7 @@ const { page } = Astro.props;
               <li class="group">
                 <a href={`/blog-no-bloat/blog/${post.slug}/`}>
                   <img
+                    class="aspect-video rounded-sm object-cover"
                     width={720}
                     height={360}
                     src={post.data.heroImage}
